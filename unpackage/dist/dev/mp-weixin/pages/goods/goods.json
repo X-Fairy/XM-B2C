@@ -1,6 +1,12 @@
 {
-  "navigationBarTitleText": "",
+  "navigationBarTitleText": "商品详情",
   "navigationBarBackgroundColor": "#f1f1f1",
   "onReachBottomDistance": 50,
-  "usingComponents": {}
+  "usingComponents": {
+    "tui-numberbox": "/components/numberbox/numberbox",
+    "tui-rate": "/components/rate/rate",
+    "hch-poster": "/wxcomponents/hch-poster/hch-poster",
+    "tui-icon": "/components/icon/icon",
+    "tui-countdown": "/components/countdown/countdown"
+  }
 }

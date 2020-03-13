@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/search/search/search",
+    "pages/activity/activity",
+    "pages/tabBar/category/category",
+    "pages/pet/pet/pet",
+    "pages/tabBar/cart/cart",
+    "pages/tabBar/user/user",
+    "pages/user/keep/keep",
+    "pages/user/coupon/coupon",
+    "pages/user/address/address",
+    "pages/user/address/edit/edit",
+    "pages/user/order_list/order_list",
+    "pages/order/confirmation",
+    "pages/user/order_list/orderDtl/orderDtl",
+    "pages/user/order_list/orderEdit/orderEdit",
+    "pages/goods/goods-list/goods-list",
+    "pages/goods/goods",
+    "pages/goods/ratings/ratings",
+    "pages/store/store/store",
+    "pages/webViwe/webViwe/webViwe",
+    "pages/parse/parse/parse"
+  ],
+  "subPackages": [],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff",
+    "backgroundColorTop": "#ffffff",
+    "backgroundColorBottom": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#f06c7a",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "iconPath": "static/img/tabBar/home.png",
+        "selectedIconPath": "static/img/tabBar/home-on.png",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/tabBar/category/category",
+        "iconPath": "static/img/tabBar/category.png",
+        "selectedIconPath": "static/img/tabBar/category-on.png",
+        "text": "分类"
+      },
+      {
+        "pagePath": "pages/tabBar/cart/cart",
+        "iconPath": "static/img/tabBar/cart.png",
+        "selectedIconPath": "static/img/tabBar/cart-on.png",
+        "text": "购物车"
+      },
+      {
+        "pagePath": "pages/tabBar/user/user",
+        "iconPath": "static/img/tabBar/user.png",
+        "selectedIconPath": "static/img/tabBar/user-on.png",
+        "text": "我的"
+      }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "用于小程序位置接口"
+    }
+  },
+  "usingComponents": {},
+  "sitemapLocation": "sitemap.json"
+}

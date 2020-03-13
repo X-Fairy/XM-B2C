@@ -1,9 +1,10 @@
 {
-  "navigationBarTextStyle": "black",
+  "navigationBarTitleText": "",
   "enablePullDownRefresh": true,
   "onReachBottomDistance": 50,
   "usingComponents": {
     "modal": "/components/modal/modal",
-    "tui-icon": "/components/icon/icon"
+    "tui-icon": "/components/icon/icon",
+    "tui-countdown": "/components/countdown/countdown"
   }
 }

@@ -1,16 +1,28 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/seckill/seckill/seckill",    
     "pages/search/search/search",
-    "pages/login/login",
-    "pages/login/register",
-    "pages/login/resetpasswd",
+    "pages/activity/activity",
     "pages/tabBar/category/category",
+    "pages/pet/pet/pet",
     "pages/tabBar/cart/cart",
     "pages/tabBar/user/user",
-    "pages/tabBar/user/order_list/orderDtl/orderDtl",
+    "pages/user/keep/keep",
+    "pages/user/coupon/coupon",
+    "pages/user/address/address",
+    "pages/user/address/edit/edit",
+    "pages/user/order_list/order_list",
+    "pages/order/confirmation",
+    "pages/user/order_list/orderDtl/orderDtl",
+    "pages/user/order_list/orderEdit/orderEdit",
     "pages/goods/goods-list/goods-list",
-    "pages/goods/goods"
+    "pages/goods/goods",
+    "pages/goods/ratings/ratings",
+    "pages/store/store/store",
+    "pages/webViwe/webViwe/webViwe",
+    "pages/parse/parse/parse"
+   
   ],
   "subPackages": [],
   "window": {
@@ -58,6 +70,5 @@
       "desc": "用于小程序位置接口"
     }
   },
-  "usingComponents": {},
-  "sitemapLocation": "sitemap34.json"
+  "usingComponents": {}
 }

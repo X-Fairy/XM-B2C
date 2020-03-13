@@ -24,344 +24,442 @@
 /* 垂直间距 */
 /* 透明度 */
 /* 文章场景相关 */
-page {
-  position: relative;
-  background-color: #f7f7f7;
-}
-.hb {
-  background-color: #fef9f5;
-  color: #f0131c;
-  font-size: 30rpx;
-  width: calc(92%);
-  height: calc(20vw 40rpx);
-  margin: 0 auto;
-  border-radius: 20rpx;
-  padding: 25rpx 0;
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-pack: justify;
-  -webkit-justify-content: space-between;
-          justify-content: space-between;
-}
-.hb .left {
-    margin-left: 10rpx;
-}
-.checkbox-box {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-align: center;
-  -webkit-align-items: center;
-          align-items: center;
-}
-.checkbox-box .checkbox {
-    width: 35rpx;
-    height: 35rpx;
-    border-radius: 100%;
-    border: solid 2rpx #f06c7a;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-}
-.checkbox-box .checkbox .on {
-      width: 25rpx;
-      height: 25rpx;
-      border-radius: 100%;
-      background-color: #f06c7a;
-}
-.checkbox-box .text {
-    font-size: 28rpx;
-    margin-left: 10rpx;
-}
 .status {
   width: 100%;
   height: 0;
   position: fixed;
-  z-index: 10;
+  z-index: 1000;
   background-color: #fff;
   top: 0;
 }
 .header {
-  width: 92%;
-  padding: 0 4%;
-  height: 100rpx;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 10000;
+  background-color: #fff;
+}
+.header .tui-edit-goods {
+    width: 100%;
+    border-radius: 12rpx;
+    overflow: hidden;
+    padding: 24rpx 30rpx 20rpx 30rpx;
+    box-sizing: border-box;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    color: #333;
+    font-size: 26rpx;
+}
+.header .tui-edit-goods .tui-goods-num {
+      font-weight: bold;
+      color: #e41f19;
+}
+.header .tui-activity {
+    font-size: 26rpx;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+            align-items: center;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    padding: 10rpx 30rpx 10rpx 30rpx;
+    box-sizing: border-box;
+    background-color: #FFDBB7;
+}
+.header .tui-activity .tui-buy {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      -webkit-box-align: center;
+      -webkit-align-items: center;
+              align-items: center;
+}
+.header .tui-activity .tui-bold {
+      font-weight: bold;
+}
+.tag {
+  width: 70%;
+  margin: auto;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  height: 60rpx;
+  line-height: 60rpx;
+  padding-top: 5rpx;
+}
+.tag .store,
+  .tag .headquarters {
+    width: 50%;
+    text-align: center;
+    height: 100%;
+    font-size: 28rpx;
+    border: 1px solid #e84341;
+}
+.tag .headquarters {
+    border-radius: 30rpx 0 0 30rpx;
+    border-right: 0;
+}
+.tag .store {
+    border-radius: 0 30rpx 30rpx 0;
+    border-left: 0;
+}
+.tag .active {
+    background-color: #e84341;
+    color: #FFFFFF;
+}
+.place {
+  background-color: #ffffff;
+  height: 300rpx;
+}
+.placeTwo {
+  background-color: #ffffff;
+  height: 170rpx;
+}
+.tis {
+  width: 100%;
+  height: 60rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  font-size: 30rpx;
+  margin-bottom: 40rpx;
+}
+.container {
+  padding-bottom: 120rpx;
+}
+.tui-cart-cell {
+  width: 100%;
+  border-radius: 12rpx;
+  background: #FFFFFF;
+  overflow: hidden;
+  box-shadow: 0rpx 1rpx 20rpx 0rpx rgba(173, 173, 173, 0.4);
+  margin-bottom: 20rpx;
+  padding-top: 30rpx;
+}
+.storeNmae {
+  padding: 20rpx 30rpx;
+  font-size: 30rpx;
+}
+.tui-goods-item {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  padding-bottom: 30rpx;
+}
+.tui-checkbox {
+  /* width: 40rpx; */
+  padding-right: 30rpx;
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  position: fixed;
-  top: 0;
-  z-index: 10;
-  background-color: #fff;
 }
-.header .title {
-    font-size: 36rpx;
+.tui-checkbox .wx-checkbox-input {
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  margin: 0;
 }
-.place {
-  background-color: #ffffff;
-  height: 100rpx;
+.tui-checkbox .wx-checkbox-input.wx-checkbox-input-checked {
+  background: #F82400;
+  width: 40rpx;
+  height: 40rpx;
+  border: none;
 }
-.goods-list {
+.tui-goods-img {
+  width: 220rpx;
+  height: 220rpx !important;
+  border-radius: 12rpx;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
+  display: block;
+}
+.tui-goods-info {
   width: 100%;
-  padding: 20rpx 0 120rpx 0;
+  padding: 20rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: start;
+  -webkit-align-items: flex-start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  box-sizing: border-box;
+  overflow: hidden;
 }
-.goods-list .tis {
-    width: 100%;
-    height: 60rpx;
+.tui-goods-title {
+  white-space: normal;
+  word-break: break-all;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  font-size: 28rpx;
+  color: #333;
+}
+.tui-goods-model {
+  max-width: 100%;
+  color: #333;
+  background: #F5F5F5;
+  border-radius: 40rpx;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 0 16rpx;
+  box-sizing: border-box;
+}
+.tui-model-text {
+  max-width: 100%;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+  -webkit-transform-origin: 0 center;
+          transform-origin: 0 center;
+  font-size: 24rpx;
+  line-height: 32rpx;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.tui-price-box {
+  width: 100%;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: end;
+  -webkit-align-items: flex-end;
+          align-items: flex-end;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+}
+.tui-goods-price {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #e41f19;
+}
+.tui-goods-price .dis_price {
+    color: #b2b2b2;
+    font-size: 30rpx;
+    margin-left: 10rpx;
+    text-decoration: line-through;
+}
+.tui-scale {
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  -webkit-transform-origin: 100% 100%;
+          transform-origin: 100% 100%;
+  border: 1px solid #EEEEEE;
+  height: 70rpx;
+}
+.tui-scale .tui-numbox-icon {
+    font-size: 35rpx !important;
+}
+.tui-scale .tui-num-input {
+    font-size: 35rpx !important;
+    height: 70rpx !important;
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
     -webkit-box-align: center;
     -webkit-align-items: center;
             align-items: center;
-    font-size: 32rpx;
 }
-.goods-list .row {
-    width: calc(92%);
-    height: calc(22vw + 40rpx);
-    margin: 20rpx auto;
-    border-radius: 15rpx;
-    box-shadow: 0rpx 5rpx 20rpx rgba(0, 0, 0, 0.1);
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
-    position: relative;
-    overflow: hidden;
-    z-index: 4;
-    border: 0;
+.tui-sub-info {
+  max-width: 532rpx;
+  font-size: 24rpx;
+  line-height: 24rpx;
+  padding: 20rpx 30rpx 10rpx 30rpx;
+  box-sizing: border-box;
+  color: #333;
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  -webkit-transform-origin: 100% center;
+          transform-origin: 100% center;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: auto;
 }
-.goods-list .row .menu {
-      position: absolute;
-      width: 30%;
-      height: 100%;
-      right: 0;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-              justify-content: center;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      background-color: red;
-      color: #fff;
-      z-index: 2;
+.tui-invalid-text {
+  width: 66rpx;
+  margin-right: 4rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.3);
+  -webkit-transform: scale(0.8);
+          transform: scale(0.8);
+  -webkit-transform-origin: center center;
+          transform-origin: center center;
+  border-radius: 4rpx;
+  -webkit-flex-shrink: 0;
+          flex-shrink: 0;
 }
-.goods-list .row .menu .icon {
-        color: #fff;
+.tui-invalid-pr {
+  padding-right: 0 !important;
 }
-.goods-list .row .carrier {
-      background-color: #fff;
-      position: absolute;
-      width: 100%;
-      padding: 0 0;
-      height: 100%;
-      z-index: 3;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
+.tui-gray {
+  color: #B2B2B2 !important;
 }
-@-webkit-keyframes showMenu {
-0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
+.tui-goods-invalid {
+  color: #555;
+  font-size: 24rpx;
 }
-100% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
+.tui-flex-center {
+  -webkit-box-align: center !important;
+  -webkit-align-items: center !important;
+          align-items: center !important;
 }
+.tui-invalid-ptop {
+  padding-top: 40rpx;
 }
-@keyframes showMenu {
-0% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-100% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
-}
-}
-@-webkit-keyframes closeMenu {
-0% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
-}
-100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-}
-@keyframes closeMenu {
-0% {
-    -webkit-transform: translateX(-30%);
-            transform: translateX(-30%);
-}
-100% {
-    -webkit-transform: translateX(0);
-            transform: translateX(0);
-}
-}
-.goods-list .row .carrier.open {
-        -webkit-animation: showMenu 0.25s linear both;
-                animation: showMenu 0.25s linear both;
-}
-.goods-list .row .carrier.close {
-        -webkit-animation: closeMenu 0.15s linear both;
-                animation: closeMenu 0.15s linear both;
-}
-.goods-list .row .carrier .checkbox-box {
-        padding-left: 20rpx;
-        -webkit-flex-shrink: 0;
-                flex-shrink: 0;
-        height: 22vw;
-        margin-right: 20rpx;
-}
-.goods-list .row .carrier .goods-info {
-        width: 100%;
-        display: -webkit-box;
-        display: -webkit-flex;
-        display: flex;
-        padding-right: 20rpx;
-}
-.goods-list .row .carrier .goods-info .img {
-          width: 22vw;
-          height: 22vw;
-          border-radius: 10rpx;
-          overflow: hidden;
-          -webkit-flex-shrink: 0;
-                  flex-shrink: 0;
-          margin-right: 10rpx;
-}
-.goods-list .row .carrier .goods-info .img image {
-            width: 22vw;
-            height: 22vw;
-}
-.goods-list .row .carrier .goods-info .info {
-          width: 100%;
-          height: 22vw;
-          overflow: hidden;
-          display: -webkit-box;
-          display: -webkit-flex;
-          display: flex;
-          -webkit-flex-wrap: wrap;
-                  flex-wrap: wrap;
-          position: relative;
-}
-.goods-list .row .carrier .goods-info .info .title {
-            width: 100%;
-            font-size: 28rpx;
-            display: -webkit-box;
-            -webkit-box-orient: vertical;
-            -webkit-line-clamp: 2;
-            overflow: hidden;
-}
-.goods-list .row .carrier .goods-info .info .spec {
-            font-size: 20rpx;
-            background-color: #f3f3f3;
-            color: #a7a7a7;
-            height: 30rpx;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-                    align-items: center;
-            padding: 0 10rpx;
-            border-radius: 15rpx;
-            margin-bottom: 20vw;
-}
-.goods-list .row .carrier .goods-info .info .price-number {
-            position: absolute;
-            width: 100%;
-            bottom: 0rpx;
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: flex;
-            -webkit-box-pack: justify;
-            -webkit-justify-content: space-between;
-                    justify-content: space-between;
-            -webkit-box-align: end;
-            -webkit-align-items: flex-end;
-                    align-items: flex-end;
-            font-size: 28rpx;
-            height: 60rpx;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number {
-              display: -webkit-box;
-              display: -webkit-flex;
-              display: flex;
-              -webkit-box-pack: center;
-              -webkit-justify-content: center;
-                      justify-content: center;
-              -webkit-box-align: end;
-              -webkit-align-items: flex-end;
-                      align-items: flex-end;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .input {
-                width: 60rpx;
-                height: 60rpx;
-                margin: 0 10rpx;
-                background-color: #f3f3f3;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .input input {
-                  width: 60rpx;
-                  height: 60rpx;
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: flex;
-                  -webkit-box-pack: center;
-                  -webkit-justify-content: center;
-                          justify-content: center;
-                  -webkit-box-align: center;
-                  -webkit-align-items: center;
-                          align-items: center;
-                  text-align: center;
-                  font-size: 26rpx;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .sub, .goods-list .row .carrier .goods-info .info .price-number .number .add {
-                width: 45rpx;
-                height: 45rpx;
-                background-color: #f3f3f3;
-                border-radius: 5rpx;
-}
-.goods-list .row .carrier .goods-info .info .price-number .number .sub .icon, .goods-list .row .carrier .goods-info .info .price-number .number .add .icon {
-                  font-size: 22rpx;
-                  width: 45rpx;
-                  height: 45rpx;
-                  display: -webkit-box;
-                  display: -webkit-flex;
-                  display: flex;
-                  -webkit-box-pack: center;
-                  -webkit-justify-content: center;
-                          justify-content: center;
-                  -webkit-box-align: center;
-                  -webkit-align-items: center;
-                          align-items: center;
-}
-.footer {
-  width: 92%;
-  padding: 0 4%;
-  background-color: #fbfbfb;
+.tui-tabbar {
+  width: 100%;
   height: 100rpx;
+  background: #fff;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  padding: 0 30rpx;
+  box-sizing: border-box;
+  font-size: 24rpx;
+  z-index: 99999;
+}
+.tui-tabbar::before {
+  content: '';
+  width: 100%;
+  border-top: 1rpx solid #d9d9d9;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-transform: scaleY(0.5);
+  transform: scaleY(0.5);
+}
+.tui-checkAll {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+          align-items: center;
+}
+.tui-checkbox-pl {
+  padding-left: 12rpx;
+}
+.tui-total-price {
+  font-size: 35rpx !important;
+  color: #e41f19;
+  font-weight: 550;
+}
+/*猜你喜欢*/
+.tui-youlike {
+  padding-left: 12rpx;
+}
+.tui-product-list {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+          flex-direction: row;
+  -webkit-flex-wrap: wrap;
+          flex-wrap: wrap;
+  box-sizing: border-box;
+  width: 92%;
+  margin: auto;
+}
+.tui-product-container {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  margin-right: 2%;
+}
+.tui-product-container:last-child {
+  margin-right: 0;
+}
+.tui-pro-item {
+  width: 100%;
+  margin-bottom: 4%;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 12rpx;
+  overflow: hidden;
+}
+.tui-pro-img {
+  width: 100%;
+  display: block;
+}
+.tui-pro-content {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: justify;
+  -webkit-justify-content: space-between;
+          justify-content: space-between;
+  box-sizing: border-box;
+  padding: 20rpx;
+}
+.tui-pro-tit {
+  color: #2e2e2e;
+  font-size: 26rpx;
+}
+.bottom-info {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
@@ -371,67 +469,28 @@ page {
   -webkit-box-align: center;
   -webkit-align-items: center;
           align-items: center;
-  font-size: 28rpx;
-  position: fixed;
-  bottom: 0rpx;
-  z-index: 5;
 }
-.footer .delBtn {
-    border: solid 1rpx #f06c7a;
-    color: #f06c7a;
-    padding: 0 30rpx;
+.bottom-info .tui-pro-price {
+    padding-top: 18rpx;
+}
+.bottom-info .cart {
+    width: 50rpx;
     height: 50rpx;
-    border-radius: 30rpx;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -webkit-justify-content: center;
-            justify-content: center;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
 }
-.footer .settlement {
-    width: 60%;
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: end;
-    -webkit-justify-content: flex-end;
-            justify-content: flex-end;
-    -webkit-box-align: center;
-    -webkit-align-items: center;
-            align-items: center;
+.tui-sale-price {
+  font-size: 34rpx;
+  font-weight: 500;
+  color: #e41f19;
 }
-.footer .settlement .sum {
-      width: 50%;
-      font-size: 28rpx;
-      margin-right: 10rpx;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: end;
-      -webkit-justify-content: flex-end;
-              justify-content: flex-end;
+.tui-factory-price {
+  font-size: 24rpx;
+  color: #a0a0a0;
+  text-decoration: line-through;
+  padding-left: 12rpx;
 }
-.footer .settlement .sum .money {
-        font-weight: 600;
-}
-.footer .settlement .btn {
-      padding: 0 30rpx;
-      height: 50rpx;
-      background-color: #f06c7a;
-      color: #fff;
-      display: -webkit-box;
-      display: -webkit-flex;
-      display: flex;
-      -webkit-box-pack: center;
-      -webkit-justify-content: center;
-              justify-content: center;
-      -webkit-box-align: center;
-      -webkit-align-items: center;
-              align-items: center;
-      border-radius: 30rpx;
+.tui-pro-pay {
+  padding-top: 10rpx;
+  font-size: 24rpx;
+  color: #656565;
 }
 

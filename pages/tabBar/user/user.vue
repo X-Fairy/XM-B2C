@@ -1,525 +1,517 @@
 <template>
 	<view>
-		<view v-if="showHeader" class="status" :style="{position:headerPosition,top:statusTop}"></view>
-		<view v-if="showHeader" class="header" :style="{position:headerPosition,top:headerTop}">
-			<view class="addr"></view>
-			<view class="input-box">
-				
-			</view>
-			<view class="icon-btn">
-				<view class="icon tongzhi" @tap="toMsg"></view>
-				<view class="icon setting" @tap="toSetting"></view>
-			</view>
-		</view>
-		<!-- 占位 -->
-		<view v-if="showHeader" class="place"></view>
-		<!-- 用户信息 -->
-		<view class="user">
-			<!-- 头像 -->
-			<view class="left">
-				<image :src="user.face" @tap="toSetting"></image>
-			</view>
-			<!-- 昵称,个性签名 -->
-			<view class="right">
-				<view class="username" @tap="toLogin">{{user.username}}</view>
-				<view class="signature" @tap="toSetting">{{user.signature}}</view>
-			</view>
-			<!-- 二维码按钮 -->
-			<view class="erweima" @tap="toMyQR">
-				<view class="icon qr"></view>
-			</view>
-		</view>
-		<!-- VIP banner -->
-		<view class="VIP">
-			<view class="img">
-				<image src="/static/img/VIP.png"></image>
-			</view>
-			<view class="title">开通VIP会员</view>
-			<view class="tis">会员特权</view>
-		</view>
-		<!-- 订单-余额 -->
-		<view class="order">
-			<view class="balance-info">
-				<view class="left">
-					<view class="box">
-						<view class="num">{{user.balance}}</view>
-						<view class="text">余额</view>
-					</view>
-					<view class="box">
-						<view class="num">{{user.balance}}</view>
-						<view class="text">优惠劵</view>
-					</view>
-					<view class="box">
-						<view class="num">{{user.integral}}</view>
-						<view class="text">积分</view>
-					</view>
+		<view class="part-one">
+			<view class="top">
+				<view class="left" v-if="userInfo">
+					<image :src="userInfo.avatarUrl" mode="" class="avatar"></image>
+					<text class="name">{{userInfo.nickName}}</text>
+					<!-- <button type="submit" open-type="getUserInfo" bindgetUserInfo="getUserInfo" style="font-size: 28rpx;">请登录</button> -->
+					<!-- <text class="type">大众会员</text> -->
+				</view>
+				<view class="left" v-else>
+					<!-- <button type="submit" open-type="getUserInfo" @getuserinfo="getuserinfo" withCredentials="true" style="font-size: 28rpx;">授权登录</button> -->
+					<text class="name">未登录</text>
 				</view>
 				<view class="right">
-					<view class="box" @tap="toDeposit">
-						<view class="img">
-							<view class="icon chongzhi"></view>
-						</view>
-						<view class="text">充值</view>
-					</view>
+					<!-- <tui-icon name="signin" color="#e84341" size="24"></tui-icon>
+					<text>签到领积分</text> -->
 				</view>
+			</view>
+			<view class="vip">
+				<image src="../../../static/img/user/vip01.jpg" mode=""></image>
+				<view class="vip-info">
+
+				</view>
+			</view>
+			<view class="upvip">
+
+			</view>
+		</view>
+		<view class="part-two">
+			<view class="item">
+				<h4>0</h4>
+				<text>会员积分</text>
+			</view>
+			<view class="item" @tap="toPage('../../user/coupon/coupon')">
+				<h4>0</h4>
+				<text>优惠券</text>
+			</view>
+			<view class="item" @tap="toCart()">
+				<h4>{{count || 0}}</h4>
+				<text>购物车</text>
+			</view>
+			<view class="item" style="border: none;">
+				<h4>0</h4>
+				<text>附近门店</text>
 			</view>
 		</view>
 		<view class="order">
 			<!-- 订单类型 -->
+			<view class="hearder">
+				<view class="title">我的订单</view>
+				<view class="all">
+					<view @tap="toOrderList()">
+						全部订单
+					</view>
+					<view class="icon xiangyou"></view>
+				</view>
+			</view>
+
 			<view class="list">
-				<view class="box" v-for="(row,index) in orderList" :key="index" @tap="toOrderList(index)">
+				<view class="box" v-for="(row,index) in orderList" :key="index" @tap="toOrderList(row.id)">
 					<view class="img">
 						<view class="icon" :class="row.icon"></view>
+						<text class="num" v-if="row.num>0">{{row.num}}</text>
 					</view>
 					<view class="text">{{row.text}}</view>
 				</view>
 			</view>
-			<!-- 余额 -->
-			<!-- <view class="balance-info">
-				<view class="left">
-					<view class="box">
-						<view class="num">{{user.integral}}</view>
-						<view class="text">积分</view>
-					</view>
-					<view class="box">
-						<view class="num">{{user.envelope}}</view>
-						<view class="text">佣金</view>
-					</view>
-					<view class="box">
-						<view class="num">{{user.balance}}</view>
-						<view class="text">余额</view>
-					</view>
-				</view>
-				<view class="right">
-					<view class="box" @tap="toDeposit">
-						<view class="img">
-							<view class="icon chongzhi"></view>
-						</view>
-						<view class="text">充值</view>
-					</view>
-				</view>
-			</view> -->
 		</view>
 		<!-- 工具栏 -->
 		<view class="toolbar">
-			<view class="title">我的工具栏</view>
-			<view class="list">
-				<view class="box" v-for="(row,index) in mytoolbarList" :key="index" @tap="toPage(row.url)">
-					<view class="img">
-						<image :src="row.img"></image>
+			<button open-type="contact" class="conbtn">
+				<view class="list">
+					<view class="text">
+						联系客服
 					</view>
-					<view class="text">{{row.text}}</view>
+					<view class="icon xiangyou"></view>
 				</view>
+			</button>
+			<view class="list" v-for="(row,index) in mytoolbarList" :key="index" @tap="toPage(row.url)">
+				<view class="text">{{row.text}}</view>
+				<view class="icon xiangyou"></view>
 			</view>
 		</view>
 		<!-- 占位 -->
 		<view class="place-bottom"></view>
+		<tui-modal :show="showModal" :custom="true" :fadein="true">
+			<view class="tui-modal-custom">
+				<view class="tui-prompt-title">为更好的提供服务给您</view>
+				<view class="tui-prompt-title">我们需要您最基本的授权（头像，昵称）</view>
+				<button type="warn" open-type="getUserInfo" @getuserinfo="getuserinfo" withCredentials="true" style="margin: 20rpx 0;">授权登录</button>
+
+			</view>
+
+		</tui-modal>
 	</view>
 </template>
-<script>
 
+<script>
+	import tuiIcon from "@/components/icon/icon"
+	import tuiModal from "@/components/modal/modal"
 	export default {
+		components: {
+			tuiIcon,
+			tuiModal
+		},
 		data() {
 			return {
-				isfirst:true,
-				headerPosition:"fixed",
-				headerTop:null,
-				statusTop:null,
-				showHeader:true,
-				//个人信息,
-				user:{
-					username:'游客1002',
-					face:'/static/img/face.jpg',
-					signature:'点击昵称跳转登录/注册页',
-					integral:0,
-					balance:0,
-					envelope:0
-				},
+				secret: {},
+				userInfo: '',
+				showModal: true,
 				// 订单类型
-				orderList:[
-					{text:'待付款',icon:"fukuan"},
-					{text:'待发货',icon:"fahuo"},
-					{text:'待收货',icon:"shouhuo"},
-					{text:'待评价',icon:"pingjia"},
-					{text:'退换货',icon:"tuihuo"}
+				orderList: [{
+						text: '未付款',
+						icon: "fukuan",
+						id: "0",
+						num: 0
+					},
+					{
+						text: '已付款',
+						icon: "fahuo",
+						id: "1",
+						num: 0
+					},
+					{
+						text: '已发货',
+						icon: "shouhuo",
+						id: "3",
+						num: 0
+					},
+					{
+						text: '已收货',
+						icon: "pingjia",
+						id: "4",
+						num: 0
+					},
+					{
+						text: '退款',
+						icon: "tuihuo",
+						id: "8",
+						num: 0
+					}
 				],
 				// 工具栏列表
-				mytoolbarList:[
-					{url:'../../user/keep/keep',text:'我的收藏',img:'/static/img/user/point.png'},
-					{url:'../../user/coupon/coupon',text:'优惠券',img:'/static/img/user/quan.png'}, 
-					{url:'',text:'新客豪礼',img:'/static/img/user/renw.png'},
-					{url:'',text:'领红包',img:'/static/img/user/momey.png'},
+				mytoolbarList: [{
+						url: '../../user/address/address',
+						text: '收货地址',
+					},
 					
-					{url:'../../user/address/address',text:'收货地址',img:'/static/img/user/addr.png'},
-					{url:'',text:'账户安全',img:'/static/img/user/security.png'},
-					{url:'',text:'银行卡',img:'/static/img/user/bank.png'},
-					{url:'',text:'抽奖',img:'/static/img/user/choujiang.png'},
-					// {text:'客服',img:'/static/img/user/kefu.png'},
-					// {text:'签到',img:'/static/img/user/mingxi.png'}
-					
-				]
+					{
+						url: '../../user/keep/keep',
+						text: '我的收藏'
+					},
+					{
+						url: '',
+						text: '团购专享'
+					},
+					{
+						url: '',
+						text: '关于我们'
+					},
+				],
+				// 购物车数量
+				count: 0
 			}
-		},
-		//下拉刷新，需要自己在page.json文件中配置开启页面下拉刷新 "enablePullDownRefresh": true
-		onPullDownRefresh() {
-		    setTimeout(function () {
-		        uni.stopPullDownRefresh();
-		    }, 1000);
-		},
-		onPageScroll(e){
-			//兼容iOS端下拉时顶部漂移
-			this.headerPosition = e.scrollTop>=0?"fixed":"absolute";
-			this.headerTop = e.scrollTop>=0?null:0;
-			this.statusTop = e.scrollTop>=0?null:-this.statusHeight+'px';
 		},
 		onLoad() {
-			this.statusHeight = 0;
-			// #ifdef APP-PLUS
-			this.showHeader = false;
-			this.statusHeight = plus.navigator.getStatusbarHeight();
-			// #endif
-		},
-		onReady(){
-			//此处，演示,每次页面初次渲染都把登录状态重置
-			uni.setStorage({
-				key: 'UserInfo',
-				data: false,
-				success: function () {
-				},
-				fail:function(e){
-				}
-			});
-		},
-		onShow(){
 			uni.getStorage({
-				key: 'UserInfo',
-				success: (res)=>{
-					if(!res.data){
-						if(this.isfirst){
-							//this.toLogin();
-						}
-						return ;
-					}
-					this.user = res.data;
-				},
-				fail:(e)=>{
-					//this.toLogin(); 
+				key: 'user',
+				success: (res) => {
+					this.secret = res.data;
 				}
-			});
+			})
+
+		},
+		onShow() {
+			this.getcount();
+			uni.getStorage({
+				key: 'cart',
+				success: (res) => {
+					this.count = res.data;
+				}
+			})
+
+			uni.getStorage({
+				key: 'userInfo',
+				success: (res) => {
+					this.userInfo = res.data;
+					if (!this.userInfo) {
+						this.showModal = true
+					} else {
+						this.showModal = false;
+					}
+				}
+			})
+
 		},
 		methods: {
-			//消息列表
-			toMsg(){
-				uni.navigateTo({
-					url:'../../msg/msg'
-				})
-			},
-			toOrderList(index){
-				uni.setStorageSync('tbIndex',index);
-				console.log(1);
-				uni.navigateTo({url:'../user/order_list/order_list?tbIndex='+index}) 
-			},
-			toSetting(){
-				uni.navigateTo({
-					url:'../../user/setting/setting'
-				})
-			},
-			toMyQR(){
-				uni.navigateTo({
-					url:'../../user/myQR/myQR'
-				})
-			},
-			toLogin(){
-				uni.showToast({title: '请登录',icon:"none"});
-				uni.navigateTo({
-					url:'../../login/login'
-				})
-				this.isfirst = false;
-			},
-			isLogin(){
-				//实际应用中,用户登录状态应该用token等方法去维持登录状态.
-				const value = uni.getStorageSync('UserInfo');
-				if (value) {
-					return true;
-				}
-				return false
-			},
-			toDeposit(){
-				uni.navigateTo({
-					url:'../../user/deposit/deposit'
-				})
-			},
-			toPage(url){
-				if(!url){
-					uni.showToast({title: '模板未包含此页面',icon:"none"});return;
-				}
-				uni.navigateTo({
-					url:url
-				})
-			}
-		}
-	} 
-</script>
-<style lang="scss">
-	page{position: relative;background-color: #fff;}
-	.status {
-		width: 100%;
-		height: 0;
-		position: fixed;
-		z-index: 10;
-		background-color: #f06c7a;
-		top: 0;
-		/*  #ifdef  APP-PLUS  */
-		height: var(--status-bar-height);//覆盖样式
-		/*  #endif  */
-		
-	}
-	
-	.header{
-		width: 92%;
-		padding: 0 4%;
-		height: 100upx;
-		display: flex;
-		justify-content: flex-end;
-		align-items: center;
-		position: fixed;
-		top: 0;
-		z-index: 10;
-		background-color: #f06c7a;
-		/*  #ifdef  APP-PLUS  */
-		top: var(--status-bar-height);
-		/*  #endif  */
-		.icon-btn{
-			width: 120upx;
-			height: 60upx;
-			flex-shrink: 0;
-			display: flex;
-			.icon{
-				color: #fff;
-				width: 60upx;
-				height: 60upx;
-				display: flex;
-				justify-content: flex-end;
-				align-items: center;
-				font-size: 42upx;
-			}
-		}
-	}
-	.place{
-		background-color: #f06c7a;
-		height: 100upx;
-		/*  #ifdef  APP-PLUS  */
-		margin-top: var(--status-bar-height);
-		/*  #endif  */
-	}
-	.place-bottom{
-		height: 300upx;
-	}
-	.user{
-		width: 92%;
-		padding: 0 4%;
-		display: flex;
-		align-items: center;
-		// position: relative;
-		background-color: #f06c7a;
-		padding-bottom: 120upx;
-		.left{
-			width: 20vw;
-			height: 20vw;
-			flex-shrink: 0;
-			margin-right: 20upx;
-			border: solid 1upx #fff;
-			border-radius: 100%;
-			image{
-				width: 20vw;
-				height: 20vw;
-				border-radius: 100%;
-			}
-			
-		}
-		.right{
-			width: 100%;
-			.username{
-				font-size: 36upx;
-				color: #fff;
-			}
-			.signature{
-				color: #eee;
-				font-size: 28upx;
-			}
-		}
-		.erweima{
-			flex-shrink: 0;
-			width: 10vw;
-			height: 10vw;
-			margin-left: 5vw;
-			border-radius: 100%;
-		
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			background: linear-gradient(to left, #fbbb37 0%,#fcf0d0 105%);
-			.icon{
-				color: #7b6335;
-				font-size: 42upx;
-			}
-		}
-	}
-	.order{
-		width: 84%;
-		margin: 30upx 4% 30upx 4%;
-		padding: 30upx 4% 20upx 4%;
-		background-color: #fff;
-		box-shadow: 0upx 0upx 25upx rgba(0,0,0,0.1);
-		border-radius: 15upx;
-		.list{
-			display: flex;
-			// border-bottom: solid 1upx #17e6a1;
-			padding-bottom: 10upx;
-			.box{
-				width: 20%;
-				.img{
-					width: 100%;
-					display: flex;
-					justify-content: center;
-					.icon{
-						font-size: 50upx;
-						color: #464646;
+			getuserinfo() {
+				// wx登录
+				uni.login({
+					success: (res) => {
+						if (res.code) {
+							var code = res.code
+							uni.getUserInfo({
+								success: (res) => {
+									this.userInfo = res.userInfo;
+									this.showModal = false;
+									let data = {
+										encryptedData: res.encryptedData,
+										iv: res.iv,
+										sessionKey: this.secret.sessionKey,
+										secret: this.secret.secret,
+										timestamp: this.secret.timestamp,
+									}
+									this.$xm.post('/Index/getUnionid', data, (res) => {
+										this.secret.unionid = res.unionid
+										uni.setStorage({
+											key: 'user',
+											data: this.secret,
+											success: (res) => {
+												console.log(res);
+											}
+										});
+									})
+									uni.setStorage({
+										key: 'userInfo',
+										data: res.userInfo,
+										success: (res) => {
+											console.log(res);
+										}
+									});
+
+								},
+								fail: res => {
+									// 获取失败的去引导用户授权 
+								}
+							})
+
+						} else {}
 					}
+				})
+			},
+			toOrderList(index) {
+				if (!index) {
+					index = "s"
 				}
-				.text{
-					width: 100%;
-					display: flex;
-					justify-content: center;
-					font-size: 28upx;
-					color: #3d3d3d;
-				}
-			}
-		}
-		.balance-info{
-			display: flex;
-			padding: 10upx 0;
-			.left{
-				width: 75%;
-				display: flex;
-				.box{
-					width: 50%;
-					font-size: 28upx;
-					
-					.num{
-						width: 100%;
-						height: 50upx;
-						display: flex;
-						justify-content: center;
-						align-items: flex-end;
-						color: #f9a453;
-					}
-					.text{
-						width: 100%;
-						display: flex;
-						justify-content: center;
-						color: #3d3d3d;
-						font-size: 28upx;
-					}
-				}
-			}
-			.right{
-				border-left: solid 1upx #e6e6e6;
-				width: 25%;
-				.box{
-					
-					.img{
-						width: 100%;
-						height: 50upx;
-						display: flex;
-						justify-content: center;
-						align-items: flex-end;
-						.icon{
-							font-size: 45upx;
-							color: #e78901;
+				console.log(index)
+				uni.setStorageSync('tbIndex', index);
+				uni.navigateTo({
+					url: '../../user/order_list/order_list?tbIndex=' + index
+				})
+			},
+			// 获取订单shuliang
+			getcount() {				
+				this.$xm.post('/Mine/index', '', (res) => {
+					console.log(res);
+					let result = res.order_state;
+					for(let i in result){
+						
+						if(result[i].order_state==this.orderList[i].id){
+							this.orderList[i].num=result[i].state
 						}
 					}
-					.text{
-						width: 100%;
-						display: flex;
-						justify-content: center;
-						font-size: 28upx;
-						color: #3d3d3d;
-					}
+
+
+				})
+			},
+			toCart() {
+				uni.switchTab({
+					url: '../cart/cart'
+				})
+			},
+			toPage(url) {
+				console.log(url);
+				if (!url) {
+					uni.showToast({
+						title: '此内容正在开发中',
+						icon: "none"
+					});
+					return;
+				}
+				uni.navigateTo({
+					url: url
+				})
+			},
+			close() {
+				this.showModal = false;
+			}
+		}
+	}
+</script>
+
+<style lang="scss">
+	.conbtn {
+		line-height: inherit !important;
+		width: 100% !important;
+		background-color: #FFFFFF !important;
+		margin: 0 !important;
+		padding: 0 !important;
+	}
+
+	button::after {
+		border: none !important;
+	}
+
+	.tui-modal-custom {
+		text-align: center;
+		font-size: 30rpx !important;
+
+	}
+
+	.part-one {
+		width: 92%;
+		margin: auto;
+
+		.top {
+			padding: 20rpx;
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+
+			.left {
+				display: flex;
+				align-items: center;
+
+				.avatar {
+					width: 80rpx;
+					height: 80rpx;
+					background-color: #e84341;
+					border-radius: 40rpx;
+				}
+
+				.name {
+					padding: 0 16rpx;
+					font-size: 28rpx;
+
+				}
+
+				// button {
+				// 	background-color: #FFFFFF !important;
+				// }
+
+				// button::after {
+				// 	border: none !important;
+				// }
+
+				.type {
+					width: 120rpx;
+					height: 32rpx;
+					border-radius: 16rpx;
+					border: solid 2rpx #999999;
+					color: #999999;
+					font-size: 24rpx;
+					text-align: center;
+				}
+			}
+
+			.right {
+				display: flex;
+				align-items: center;
+
+				text {
+					font-size: 24rpx;
+					font-weight: bold;
+					color: #969897;
+					margin-left: 6rpx;
 				}
 			}
 		}
-	}
-	.VIP{
-		width: 84%;
-		margin: -65upx auto 20upx auto;
-		padding: 30upx 4%;
-		background: linear-gradient(to left, #dea96d 0%,#f6d59b 100%);
-		box-shadow: 0upx 0upx 25upx rgba(0,0,0,0.2);
-		border-radius: 15upx;
-		display: flex;
-		align-items: center;
-		.img{
-			flex-shrink: 0;
-			width: 60upx;
-			height: 60upx;
-			image{
-				width: 60upx;
-				height: 60upx;
+
+		.vip {
+			image {
+				width: 690rpx;
+				height: 400rpx;
 			}
 		}
-		.title{
-			width: 100%;
-			color: #796335;
-			font-size: 30upx;
-		}
-		.tis{
-			width: 100%;
-			display: flex;
-			justify-content: flex-end;
-			color: #fcf0d0;
-			font-size: 26upx;
+	}
+
+	.part-two {
+
+		width: 92%;
+		margin: auto;
+		display: flex;
+		align-items: center;
+		margin-top: 40rpx;
+
+		.item {
+			padding: 10rpx;
+			width: 25%;
+			text-align: center;
+			border-right: 3rpx solid #b2b2b2;
+
+			h4 {
+				font-size: 36rpx;
+			}
+
+			text {
+				color: #8c8c8c;
+				font-size: 24rpx;
+			}
 		}
 	}
-	.toolbar{
+
+	.order {
 		width: 92%;
-		margin: 0 4% 0 4%;
-		padding: 0 0 20upx 0;
-		background-color: #fff;
-		box-shadow: 0upx 0upx 25upx rgba(0,0,0,0.1);
-		border-radius: 15upx;
-		.title{
-			padding-top: 10upx;
-			margin: 0 0 10upx 3%;
-			font-size: 30upx;
+		margin: auto;
+		margin-top: 40rpx;
+		padding: 0 4% 0upx 4%;
+		height: 265rpx;
+		background-color: #ffffff;
+		box-shadow: 0rpx 1rpx 20rpx 0rpx rgba(173, 173, 173, 0.4);
+
+		.hearder {
+			margin-top: 20upx;
+			margin-bottom: 25upx;
 			height: 80upx;
 			display: flex;
 			align-items: center;
-		}
-		.list{
-			display: flex;
-			flex-wrap: wrap;
-			.box{
-				width: 25%;
-				margin-bottom: 30upx;
-				.img{
-					width: 23vw;
-					height: 10.5vw;
-					display: flex;
-					justify-content: center;
-					
-					image{
-						width: 9vw;
-						height: 9vw;
-					}
+			justify-content: space-between;
+
+			.title {
+				font-size: 28rpx;
+			}
+
+			.all {
+				font-size: 28upx;
+				color: #969696;
+				display: flex;
+				align-items: center;
+
+				.xiangyou {
+					color: #adadad;
+					font-size: 26upx;
+					margin-left: 10upx;
 				}
-				.text{
+			}
+		}
+
+		.list {
+			display: flex;
+			// border-bottom: solid 1upx #17e6a1;
+			padding-bottom: 10upx;
+
+			.box {
+				width: 20%;
+
+				.img {
 					width: 100%;
 					display: flex;
 					justify-content: center;
-					font-size: 26upx;
-					color: #3d3d3d;
+					position: relative;
+
+					.icon {
+						font-size: 50upx;
+						color: #e84341;
+					}
+
+					.num {
+						padding: 5rpx;
+						position: absolute;
+						right: 18rpx;
+						top: -17rpx;
+						display: inline-block;
+						width: 30rpx;
+						height: 30rpx;
+						background-color: red;
+						color: #fff;
+						font-size: 25rpx;
+						border-radius: 50%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						
+					}
 				}
+
+				.text {
+					width: 100%;
+					display: flex;
+					justify-content: center;
+					font-size: 28upx;
+					color: #727272;
+					padding-top: 10rpx;
+
+
+
+
+				}
+			}
+		}
+
+
+	}
+
+	.toolbar {
+		margin-top: 40rpx;
+		width: 100%;
+
+		.list {
+			padding: 30rpx;
+			border-bottom: 1rpx solid #eee;
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+
+			.text {
+				font-size: 27rpx;
+			}
+
+			.xiangyou {
+				color: #adadad;
+				font-size: 26upx;
+				margin-left: 10upx;
 			}
 		}
 	}

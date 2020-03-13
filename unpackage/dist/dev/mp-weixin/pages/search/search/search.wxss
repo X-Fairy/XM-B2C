@@ -35,6 +35,10 @@ page {
   background-color: #fff;
   top: 0;
 }
+.place {
+  background-color: #ffffff;
+  height: 100rpx;
+}
 .header {
   width: 100%;
   padding: 15rpx 4% 15rpx;
@@ -86,26 +90,28 @@ page {
 }
 .header .btn {
     width: 140rpx;
-    height: 60rpx;
 }
-.header .btn uni-button {
-      line-height: 60rpx !important;
+.header .btn button {
       font-size: 28rpx;
       border: 0;
       border-radius: 50rpx !important;
 }
-.header .active uni-button {
+.header .btn button::after {
+      border: none !important;
+}
+.header .active button {
     background-color: red;
     color: white;
 }
-.history, .hot {
+.history,
+.hot {
   padding: 4%;
   position: relative;
-  top: 110rpx;
   background-color: white;
   font-size: 28rpx;
 }
-.history .title, .hot .title {
+.history .title,
+  .hot .title {
     width: 100%;
     display: -webkit-box;
     display: -webkit-flex;
@@ -114,11 +120,13 @@ page {
     -webkit-justify-content: space-between;
             justify-content: space-between;
 }
-.history .title .icon-btn .icon, .hot .title .icon-btn .icon {
+.history .title .icon-btn .icon,
+    .hot .title .icon-btn .icon {
       font-size: 32rpx !important;
       font-weight: 400;
 }
-.history .content, .hot .content {
+.history .content,
+  .hot .content {
     padding-top: 10rpx;
     display: -webkit-box;
     display: -webkit-flex;
@@ -132,7 +140,8 @@ page {
     -webkit-flex-wrap: wrap;
             flex-wrap: wrap;
 }
-.history .content .keywords, .hot .content .keywords {
+.history .content .keywords,
+    .hot .content .keywords {
       margin-right: 20rpx;
       margin-bottom: 20rpx;
       text-align: center;
